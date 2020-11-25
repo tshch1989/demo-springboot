@@ -2,16 +2,16 @@ package com.example.demospringboot.linebusiness.app.biz.impl;
 
 import com.example.demospringboot.linebusiness.app.biz.BookService;
 import com.example.demospringboot.common.exceptions.BizException;
+import com.example.demospringboot.linebusiness.infrastructure.cache.RedisCache;
 import com.example.demospringboot.linebusiness.infrastructure.repositories.jpa.BookRepository;
 import com.example.demospringboot.linebusiness.infrastructure.repositories.jpa.entity.Book;
 import com.example.demospringboot.linebusiness.infrastructure.repositories.mongo.BookCatalogRepository;
 import com.example.demospringboot.linebusiness.infrastructure.repositories.mongo.entity.BookCatalog;
-import com.example.demospringboot.linebusiness.interfaces.controller.form.BookDetailVoForm;
-import com.example.demospringboot.linebusiness.interfaces.controller.form.BookForm;
-import com.example.demospringboot.linebusiness.interfaces.controller.form.BookVoForm;
+import com.example.demospringboot.linebusiness.interfaces.rest.form.BookDetailVoForm;
+import com.example.demospringboot.linebusiness.interfaces.rest.form.BookForm;
+import com.example.demospringboot.linebusiness.interfaces.rest.form.BookVoForm;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -24,12 +24,12 @@ import java.util.stream.Collectors;
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final BookCatalogRepository bookCatalogRepository;
-    private final RedisTemplate<String,String> redisTemplate;
+    private final RedisCache redisCache;
 
-    public BookServiceImpl(BookRepository bookRepository, BookCatalogRepository bookCatalogRepository, RedisTemplate redisTemplate) {
+    public BookServiceImpl(BookRepository bookRepository, BookCatalogRepository bookCatalogRepository, RedisCache redisCache) {
         this.bookRepository = bookRepository;
         this.bookCatalogRepository = bookCatalogRepository;
-        this.redisTemplate = redisTemplate;
+        this.redisCache = redisCache;
     }
 
     @Override
@@ -48,14 +48,14 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookVoForm> listBook() {
         List<BookVoForm> bookVoForms = bookRepository.findAll().stream().map(BookVoForm::fromBook).collect(Collectors.toList());
-        redisTemplate.opsForValue().set("test-key", bookVoForms.toString());
-        String testValue = redisTemplate.opsForValue().get("test-key");
+        redisCache.opsForValue().set("test-key", bookVoForms.toString());
+        String testValue = redisCache.opsForValue().get("test-key");
         log.info("redis访问正常: {}", testValue);
         return bookVoForms;
     }
 
     @Override
-    public BookDetailVoForm bookDetail(@NonNull Long bookId) throws BizException {
+    public BookDetailVoForm bookDetail(long bookId) throws BizException {
         return bookRepository.findById(bookId).map(book -> {
             BookCatalog bookCatalog = bookCatalogRepository.findById(bookId).orElseGet(BookCatalog::new);
             return BookDetailVoForm.fromBookAndCatalog(book, bookCatalog);

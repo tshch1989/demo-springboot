@@ -1,4 +1,4 @@
-package com.example.demospringboot.linebusiness.interfaces.controller;
+package com.example.demospringboot.linebusiness.interfaces.rest;
 
 import com.example.demospringboot.common.exceptions.BizException;
 import com.example.demospringboot.linebusiness.app.biz.BookService;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Controller
@@ -28,7 +27,7 @@ public class BooKController {
     }
 
     @PostMapping("/book/add")
-    public String addBook(BookForm bookForm){
+    public String addBook(@Validated BookForm bookForm){
         bookService.addBook(bookForm);
         return "redirect:/book/list";
     }
@@ -41,7 +40,7 @@ public class BooKController {
     }
 
     @GetMapping("/book/detail")
-    public String bookDetail(@NotNull @Min(1) Long bookId, Model model) throws BizException {
+    public String bookDetail(@Min(1) long bookId, Model model) throws BizException {
         BookDetailVoForm bookDetailVoForm = bookService.bookDetail(bookId);
         model.addAttribute("book", bookDetailVoForm);
         return "book-detail";
