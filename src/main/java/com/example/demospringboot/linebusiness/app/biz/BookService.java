@@ -1,6 +1,6 @@
 package com.example.demospringboot.linebusiness.app.biz;
 
-import com.example.demospringboot.linebusiness.common.exceptions.BizException;
+import com.example.demospringboot.common.exceptions.BizException;
 import com.example.demospringboot.linebusiness.interfaces.controller.form.BookDetailVoForm;
 import com.example.demospringboot.linebusiness.interfaces.controller.form.BookForm;
 import com.example.demospringboot.linebusiness.interfaces.controller.form.BookVoForm;

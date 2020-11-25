@@ -1,7 +1,7 @@
 package com.example.demospringboot.linebusiness.app.biz.impl;
 
 import com.example.demospringboot.linebusiness.app.biz.BookService;
-import com.example.demospringboot.linebusiness.common.exceptions.BizException;
+import com.example.demospringboot.common.exceptions.BizException;
 import com.example.demospringboot.linebusiness.infrastructure.repositories.jpa.BookRepository;
 import com.example.demospringboot.linebusiness.infrastructure.repositories.jpa.entity.Book;
 import com.example.demospringboot.linebusiness.infrastructure.repositories.mongo.BookCatalogRepository;

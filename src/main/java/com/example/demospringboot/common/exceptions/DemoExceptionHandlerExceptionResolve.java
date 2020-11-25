@@ -1,4 +1,4 @@
-package com.example.demospringboot.framework;
+package com.example.demospringboot.common.exceptions;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
