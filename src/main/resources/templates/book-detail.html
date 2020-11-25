@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Detail</title>
+    <!-- 引入 Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<h1 th:text="${book.bookId}"></h1>
+<h2 th:text="${book.bookName}"></h2>
+<h2 th:text="${book.bookAuthor}"></h2>
+<span th:text="${book.bookCatalog}"></span>
+</body>
+</html>

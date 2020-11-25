@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <!-- 引入 Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<form class="form-inline" role="form" action="javascript:;">
+    <div class="form-group">
+        <label class="sr-only" for="id-book-name">书名</label>
+        <input id="id-book-name" type="text" class="form-control" name="bookName" placeholder="请输入名称">
+    </div>
+    <button type="submit" id="id-search" class="btn btn-default">搜索</button>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>书名</td>
+            <td>作者</td>
+            <td>详情</td>
+        </tr>
+    </thead>
+    <tbody id="id-book-tbody">
+        <tr th:each="book: ${books}">
+            <td th:text="${book.bookId}"></td>
+            <td th:text="${book.bookName}"></td>
+            <td th:text="${book.bookAuthor}"></td>
+            <td><a th:href="@{/book/detail(bookId=${book.bookId})}">详情</a></td>
+        </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+    $("#id-search").click(function () {
+        let data = {};
+        data.bookName = $("#id-book-name").val();
+        $.post("/book/search.json",data, function (resp) {
+            if(typeof resp === "string"){
+                alert(resp);
+                return;
+            }
+            $("#id-book-tbody").html("");
+            for (let i = 0; i < resp.length; i++) {
+                let book = resp[i];
+                let trStr = "<tr><td>" +book.bookId
+                +"</td><td>" +book.bookName
+                +"</td><td>" +book.bookAuthor
+                +"</td><td><a href=\"/book/detail?bookId=" +book.bookId
+                +"\">详情</a>"
+                +"</td></tr>";
+                $("#id-book-tbody").append(trStr);
+            }
+        });
+    });
+</script>
+</body>
+</html>
