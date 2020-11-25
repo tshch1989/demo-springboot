@@ -1,4 +1,4 @@
-package com.example.demospringboot.linebusiness.interfaces.controller.form;
+package com.example.demospringboot.linebusiness.interfaces.rest.form;
 
 import lombok.Data;
 

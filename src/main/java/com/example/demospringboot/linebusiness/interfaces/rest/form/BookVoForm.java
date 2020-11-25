@@ -1,4 +1,4 @@
-package com.example.demospringboot.linebusiness.interfaces.controller.form;
+package com.example.demospringboot.linebusiness.interfaces.rest.form;
 
 import com.example.demospringboot.linebusiness.infrastructure.repositories.jpa.entity.Book;
 import lombok.Data;

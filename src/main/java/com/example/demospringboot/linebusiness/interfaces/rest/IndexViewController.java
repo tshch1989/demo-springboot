@@ -1,4 +1,4 @@
-package com.example.demospringboot.linebusiness.interfaces.controller;
+package com.example.demospringboot.linebusiness.interfaces.rest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
