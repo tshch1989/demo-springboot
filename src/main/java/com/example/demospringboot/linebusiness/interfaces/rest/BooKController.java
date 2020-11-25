@@ -1,10 +1,10 @@
 package com.example.demospringboot.linebusiness.interfaces.controller;
 
-import com.example.demospringboot.linebusiness.app.biz.BookService;
 import com.example.demospringboot.common.exceptions.BizException;
-import com.example.demospringboot.linebusiness.interfaces.controller.form.BookDetailVoForm;
-import com.example.demospringboot.linebusiness.interfaces.controller.form.BookForm;
-import com.example.demospringboot.linebusiness.interfaces.controller.form.BookVoForm;
+import com.example.demospringboot.linebusiness.app.biz.BookService;
+import com.example.demospringboot.linebusiness.interfaces.rest.form.BookDetailVoForm;
+import com.example.demospringboot.linebusiness.interfaces.rest.form.BookForm;
+import com.example.demospringboot.linebusiness.interfaces.rest.form.BookVoForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;

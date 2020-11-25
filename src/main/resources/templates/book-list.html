@@ -42,7 +42,8 @@
                 alert(resp);
                 return;
             }
-            $("#id-book-tbody").html("");
+            let $bookBody = $("#id-book-tbody");
+            $bookBody.html("");
             for (let i = 0; i < resp.length; i++) {
                 let book = resp[i];
                 let trStr = "<tr><td>" +book.bookId
@@ -51,7 +52,7 @@
                 +"</td><td><a href=\"/book/detail?bookId=" +book.bookId
                 +"\">详情</a>"
                 +"</td></tr>";
-                $("#id-book-tbody").append(trStr);
+                $bookBody.append(trStr);
             }
         });
     });
