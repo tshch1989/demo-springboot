@@ -4,13 +4,15 @@ import com.example.demospringboot.linebusiness.infrastructure.repositories.jpa.e
 import lombok.Data;
 import lombok.NonNull;
 
+import javax.annotation.Nonnull;
+
 @Data
 public class BookVoForm {
     private Long bookId;
     private String bookName;
     private String bookAuthor;
 
-    @org.springframework.lang.NonNull
+    @Nonnull
     public static BookVoForm fromBook(@NonNull Book book) {
         BookVoForm bookVoForm = new BookVoForm();
         bookVoForm.bookAuthor = book.getBookAuthor();

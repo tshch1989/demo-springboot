@@ -51,4 +51,10 @@ public class BooKController {
     public List<BookVoForm> bookSearch(@NotEmpty String bookName){
         return bookService.searchByBookName(bookName);
     }
+
+    @PostMapping("/book/clear.json")
+    @ResponseBody
+    public void bookClear(){
+        bookService.clearBook();
+    }
 }

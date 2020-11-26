@@ -21,7 +21,7 @@ public class DemoExceptionHandlerExceptionResolve {
 
     @ExceptionHandler({ValidationException.class, BindException.class})
     public Object handle(Exception ex, HttpServletRequest request){
-        if(RequestUtil.isAjax(request)){
+        if(RequestUtil.isResponseJson(request)){
             return ResponseEntity.ok("fail: params error.");
         }else {
             return new ModelAndView("/error/4xx");

@@ -7,9 +7,23 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1 th:text="${book.bookId}"></h1>
-<h2 th:text="${book.bookName}"></h2>
-<h2 th:text="${book.bookAuthor}"></h2>
-<span th:text="${book.bookCatalog}"></span>
+<table class="table table-striped">
+    <tr>
+        <td class="text-center">BookId</td>
+        <td th:text="${book.bookId}"></td>
+    </tr>
+    <tr>
+        <td class="text-center">书名</td>
+        <td th:text="${book.bookName}"></td>
+    </tr>
+    <tr>
+        <td class="text-center">作者</td>
+        <td th:text="${book.bookAuthor}"></td>
+    </tr>
+    <tr>
+        <td class="text-center">目录</td>
+        <td th:text="${book.bookCatalog}"></td>
+    </tr>
+</table>
 </body>
 </html>

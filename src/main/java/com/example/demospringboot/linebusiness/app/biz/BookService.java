@@ -6,18 +6,21 @@ import com.example.demospringboot.linebusiness.interfaces.rest.form.BookForm;
 import com.example.demospringboot.linebusiness.interfaces.rest.form.BookVoForm;
 import lombok.NonNull;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public interface BookService {
 
     void addBook(@NonNull BookForm bookForm);
 
-    @org.springframework.lang.NonNull
+    @Nonnull
     List<BookVoForm> listBook();
 
-    @org.springframework.lang.NonNull
+    @Nonnull
     BookDetailVoForm bookDetail(long bookId) throws BizException;
 
-    @org.springframework.lang.NonNull
+    @Nonnull
     List<BookVoForm> searchByBookName(@NonNull String bookName);
+
+    void clearBook();
 }

@@ -14,6 +14,7 @@
         <input id="id-book-name" type="text" class="form-control" name="bookName" placeholder="请输入名称">
     </div>
     <button type="submit" id="id-search" class="btn btn-default">搜索</button>
+    <button type="submit" id="id-clear" class="btn btn-default">清理所有记录</button>
 </form>
 <table class="table table-striped">
     <thead>
@@ -53,6 +54,15 @@
                 +"\">详情</a>"
                 +"</td></tr>";
                 $bookBody.append(trStr);
+            }
+        });
+    });
+    $("#id-clear").click(function () {
+        $.post("/book/clear.json",{},function (resp) {
+            if(resp){
+                alert(resp);
+            }else {
+                $("#id-book-tbody").html("");
             }
         });
     });
