@@ -64,7 +64,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookVoForm> searchByBookName(@NonNull String bookName) {
-        return Optional.ofNullable(bookRepository.findLikeBookName(bookName))
+        return Optional.ofNullable(bookRepository.findByBookNameLike(bookName))
                 .map(books -> books.stream().map(BookVoForm::fromBook).collect(Collectors.toList()))
                 .orElseGet(Collections::emptyList);
     }
