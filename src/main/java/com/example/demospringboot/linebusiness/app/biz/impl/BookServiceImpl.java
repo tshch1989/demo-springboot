@@ -12,7 +12,9 @@ import com.example.demospringboot.linebusiness.interfaces.rest.form.BookForm;
 import com.example.demospringboot.linebusiness.interfaces.rest.form.BookVoForm;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Nonnull;
 import java.util.Collections;
@@ -34,6 +36,7 @@ public class BookServiceImpl implements BookService {
         this.redisCache = redisCache;
     }
 
+    @Transactional(rollbackFor = Throwable.class)
     @Override
     public void addBook(@NonNull BookForm bookForm) {
         Book book = new Book();
@@ -45,6 +48,10 @@ public class BookServiceImpl implements BookService {
         bookCatalog.setBookId(book.getBookId());
         bookCatalog.setBookCatalog(bookForm.getBookCatalog());
         bookCatalogRepository.insert(bookCatalog);
+
+        if("测试事务".equals(bookForm.getBookName())){
+            throw new RuntimeException("测试事务一致性,数据库不应该插入数据");
+        }
     }
 
     @Override
@@ -75,6 +82,7 @@ public class BookServiceImpl implements BookService {
                 .orElseGet(Collections::emptyList);
     }
 
+    @Transactional(rollbackFor = Throwable.class)
     @Override
     public void clearBook() {
         bookRepository.deleteAll();

@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@EnableJpaRepositories("com.example.demospringboot.**.infrastructure.repositories.jpa")
-@EnableMongoRepositories("com.example.demospringboot.**.infrastructure.repositories.mongo")
 public class DemoSpringbootApplication {
 
     public static void main(String[] args) {
