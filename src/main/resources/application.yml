@@ -24,3 +24,16 @@ spring:
     host: localhost
     database: 0
     password:
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      humio:
+        tags:
+          application: demo-springboot
